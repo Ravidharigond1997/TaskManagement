@@ -5,7 +5,7 @@ import generateToken from "../config/generateToken.js";
 
 export const createUser = async (req, res) => {
   try {
-    const { name, email, rollNo, address, password, isAdmin } = req.body;
+    const { firstName, lastName, email, password } = req.body;
 
     const userExists = await User.findOne({ email });
 
@@ -17,20 +17,18 @@ export const createUser = async (req, res) => {
     const hashPasswords = await hashPassword(password);
 
     const user = await User.create({
-      name,
+      firstName,
+      lastName,
       email,
-      address,
-      rollNo,
       password: hashPasswords,
-      isAdmin,
     });
 
     if (user) {
       res.status(200).json({
         _id: user._id,
-        name: user.name,
+        firstName: user.firstName,
+        lastName: user.lastName,
         email: user.email,
-        address: user.address,
         token: generateToken(user._id),
       });
     } else {

@@ -1,14 +1,20 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+import chalk from "chalk";
 
-const db_uri =
-  "";
+dotenv.config();
+
+const db_uri = process.env.MONGO_URI;
 
 const connection = async () => {
   try {
     const conn = await mongoose.connect(db_uri);
-    console.log(`Connected To MongoDB database ${conn.connection.host}`);
+    console.log(
+      chalk.green(`Connected To MongoDB database: ${conn.connection.host}`)
+    );
+    console.log(chalk.cyan(`Connection string: ${db_uri}`));
   } catch (err) {
-    console.log(`connection error: ${err.message}`);
+    console.log(chalk.red(`Connection error: ${err.message}`));
   }
 };
 

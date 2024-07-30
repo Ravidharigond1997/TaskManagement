@@ -1,10 +1,10 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
-dotenv.config();
+let token_secrate = process.nextTick.TOKEN_SECRATE;
 
 const generateToken = (id) => {
-  return jwt.sign({ id }, process.nextTick.TokenSecrate, {
+  return jwt.sign({ id }, token_secrate, {
     expiresIn: "7d",
   });
 };
