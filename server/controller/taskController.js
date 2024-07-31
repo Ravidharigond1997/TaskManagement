@@ -35,3 +35,63 @@ export const createTask = async (req, res) => {
     });
   }
 };
+
+export const getAllTask = async (req, res) => {
+  try {
+    const tasks = await Task.find();
+    const taskCount = tasks.length;
+
+    res
+      .status(200)
+      .json({ message: "All task get successfully", tasks, count: taskCount });
+  } catch (error) {
+    res.status(500).json({
+      message: "An error occurred while fetching tasks",
+      error: error.message,
+    });
+  }
+};
+
+export const updateTask = async (req, res) => {
+  const { id } = req.params;
+  const { task, description } = req.body;
+
+  try {
+    const updatedTask = await Task.findByIdAndUpdate(
+      id,
+      { task, description },
+      { new: true }
+    );
+
+    if (!updatedTask) {
+      return res.status(404).json({ message: "Task not found" });
+    }
+
+    res.status(200).json({
+      massage: "Task is updated successfully",
+      data: updatedTask,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "An error occurred while updating the task",
+      error: error.message,
+    });
+  }
+};
+
+export const deleteTask = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deletedTask = await Task.findByIdAndDelete(id);
+    if (!deletedTask) {
+      return res.status(404).json({ message: "Task not found" });
+    }
+    res.status(200).json({ message: "Task deleted successfully" });
+  } catch (error) {
+    res.status(500).json({
+      message: "An error occurred while deleting the task",
+      error: error.message,
+    });
+  }
+};

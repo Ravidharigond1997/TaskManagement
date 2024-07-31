@@ -1,0 +1,34 @@
+/* SignUp.css */
+.formContainer {
+  padding: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-top: 30px;
+}
+
+.submitButton,
+.GoogleButton {
+  margin-top: 20px;
+}
+
+.GoogleButton {
+  margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+  .formContainer {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 400px) {
+  .formContainer {
+    padding: 10px;
+  }
+
+  .submitButton,
+  .GoogleButton {
+    font-size: 14px;
+  }
+}

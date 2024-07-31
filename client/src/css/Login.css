@@ -1,0 +1,23 @@
+/* Login.css */
+.formContainer {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.submitButton {
+  margin-top: 20px;
+}
+
+.GoogleButton {
+  margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+  .formContainer {
+    padding: 10px;
+  }
+}

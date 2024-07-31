@@ -6,6 +6,7 @@ import chalk from "chalk";
 
 import connection from "./config/db.js";
 import userRouter from "./router/userRouter.js";
+import taskRouter from "./router/taskRouter.js";
 
 dotenv.config();
 
@@ -14,14 +15,16 @@ connection();
 
 const app = express();
 
-// Use CORS middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
-// Body parser middleware
 app.use(bodyParser.json());
 
-// Set up middleware to serve static files
-app.use("/api/v1", userRouter);
+app.use("/api/v1/user", userRouter);
+app.use("/api/v1/task", taskRouter);
 
 const PORT = process.env.PORT || "8000";
 
